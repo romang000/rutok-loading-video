@@ -1,1 +1,0 @@
-# rutok-loading-video
