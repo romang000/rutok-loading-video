@@ -42,7 +42,8 @@ public static class ServiceCollectionsExtensions
 
     public static WebApplicationBuilder AddData(this WebApplicationBuilder builder)
     {
-        // implementation will be
         return builder;
     }
 }
+
+

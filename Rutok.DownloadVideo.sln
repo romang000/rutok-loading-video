@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Domain"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Application", "Rutok.DownloadVideo.Application\Rutok.DownloadVideo.Application.csproj", "{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.DataAccess", "Rutok.DownloadVideo.DataAccess\Rutok.DownloadVideo.DataAccess.csproj", "{D49A1B77-E84F-4917-B746-80D74D7B8D4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
