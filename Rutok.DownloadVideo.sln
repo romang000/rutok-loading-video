@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.API", "Rutok.DownloadVideo.API\Rutok.DownloadVideo.API.csproj", "{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Domain", "Rutok.DownloadVideo.Domain\Rutok.DownloadVideo.Domain.csproj", "{65CD1BD6-3F43-4546-9379-C215B38FFCF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Core", "Rutok.DownloadVideo.Core\Rutok.DownloadVideo.Core.csproj", "{65CD1BD6-3F43-4546-9379-C215B38FFCF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Application", "Rutok.DownloadVideo.Application\Rutok.DownloadVideo.Application.csproj", "{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}"
 EndProject
