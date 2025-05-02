@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Rutok.DownloadVideo.Domain\Rutok.DownloadVideo.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

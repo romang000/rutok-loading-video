@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.API", "Rutok.DownloadVideo.API\Rutok.DownloadVideo.API.csproj", "{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo", "Rutok.DownloadVideo\Rutok.DownloadVideo.csproj", "{068B9742-F27A-4641-B125-E71308AB3E6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Core", "Rutok.DownloadVideo.Core\Rutok.DownloadVideo.Core.csproj", "{65CD1BD6-3F43-4546-9379-C215B38FFCF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Application", "Rutok.DownloadVideo.Application\Rutok.DownloadVideo.Application.csproj", "{2EFE4D80-9F54-4DB5-8277-8EFC55C370E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Application", "Rutok.DownloadVideo.Application\Rutok.DownloadVideo.Application.csproj", "{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Infrastructure", "Rutok.DownloadVideo.Infrastructure\Rutok.DownloadVideo.Infrastructure.csproj", "{6278901A-FBEA-4E80-8C17-166E36F3EAA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.DataAccess", "Rutok.DownloadVideo.DataAccess\Rutok.DownloadVideo.DataAccess.csproj", "{D49A1B77-E84F-4917-B746-80D74D7B8D4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutok.DownloadVideo.Domain", "Rutok.DownloadVideo.Domain\Rutok.DownloadVideo.Domain.csproj", "{B79B98B6-A74E-4722-AC90-F713170EEA51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,21 +14,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37C585BF-C5F6-4AE4-8AE9-5B4EBDB90F36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65CD1BD6-3F43-4546-9379-C215B38FFCF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65CD1BD6-3F43-4546-9379-C215B38FFCF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65CD1BD6-3F43-4546-9379-C215B38FFCF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65CD1BD6-3F43-4546-9379-C215B38FFCF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCEC6369-1BFB-46F1-870B-6ED80B74D1BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D49A1B77-E84F-4917-B746-80D74D7B8D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068B9742-F27A-4641-B125-E71308AB3E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068B9742-F27A-4641-B125-E71308AB3E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068B9742-F27A-4641-B125-E71308AB3E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068B9742-F27A-4641-B125-E71308AB3E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EFE4D80-9F54-4DB5-8277-8EFC55C370E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EFE4D80-9F54-4DB5-8277-8EFC55C370E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EFE4D80-9F54-4DB5-8277-8EFC55C370E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EFE4D80-9F54-4DB5-8277-8EFC55C370E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6278901A-FBEA-4E80-8C17-166E36F3EAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6278901A-FBEA-4E80-8C17-166E36F3EAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6278901A-FBEA-4E80-8C17-166E36F3EAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6278901A-FBEA-4E80-8C17-166E36F3EAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B79B98B6-A74E-4722-AC90-F713170EEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79B98B6-A74E-4722-AC90-F713170EEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79B98B6-A74E-4722-AC90-F713170EEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79B98B6-A74E-4722-AC90-F713170EEA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

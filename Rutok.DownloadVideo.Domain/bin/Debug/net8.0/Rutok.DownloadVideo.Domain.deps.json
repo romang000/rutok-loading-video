@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Rutok.DownloadVideo.Domain/1.0.0": {
+        "runtime": {
+          "Rutok.DownloadVideo.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Rutok.DownloadVideo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
