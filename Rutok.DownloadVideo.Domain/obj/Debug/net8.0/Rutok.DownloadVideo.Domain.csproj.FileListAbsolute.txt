@@ -1,0 +1,11 @@
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/bin/Debug/net8.0/Rutok.DownloadVideo.Domain.deps.json
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/bin/Debug/net8.0/Rutok.DownloadVideo.Domain.dll
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/bin/Debug/net8.0/Rutok.DownloadVideo.Domain.pdb
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.AssemblyInfoInputs.cache
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.AssemblyInfo.cs
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.csproj.CoreCompileInputs.cache
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.dll
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/refint/Rutok.DownloadVideo.Domain.dll
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/Rutok.DownloadVideo.Domain.pdb
+/Users/user/RiderProjects/Rutok.DownloadVideo/Rutok.DownloadVideo.Domain/obj/Debug/net8.0/ref/Rutok.DownloadVideo.Domain.dll
