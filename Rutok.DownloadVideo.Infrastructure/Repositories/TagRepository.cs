@@ -7,8 +7,14 @@ namespace Rutok.DownloadVideo.Infrastructure.Repositories;
 
 public class TagRepository(DownloadVideoDbContext context) : ITagRepository
 {
-    public async Task<Guid> Add(TagEntity entity)
+    public async Task<Guid?> Add(TagEntity entity)
     {
+        bool isHaveThisTag = await context.Tags.AnyAsync(t => t.RuTag == entity.RuTag && t.EngTag == entity.EngTag);
+        if (isHaveThisTag)
+        {
+            return null;
+        }
+        
         var newEntity = await context.Tags.AddAsync(entity);
         await context.SaveChangesAsync();
         return newEntity.Entity.Id;
@@ -34,5 +40,18 @@ public class TagRepository(DownloadVideoDbContext context) : ITagRepository
             .ExecuteDeleteAsync();
         
         return rows > 0 ? id : null;
+    }
+
+    public async Task<bool> FindByName(string name)
+    {
+        var isFind = await context.Tags.AnyAsync(t => t.RuTag == name || t.EngTag == name);
+        return isFind;
+    }
+
+    public async Task<List<TagEntity>> GetExisting(List<string> ruTags, List<string> engTags)
+    {
+        return await context.Tags
+            .Where(t => ruTags.Contains(t.RuTag) || engTags.Contains(t.EngTag))
+            .ToListAsync();
     }
 }
