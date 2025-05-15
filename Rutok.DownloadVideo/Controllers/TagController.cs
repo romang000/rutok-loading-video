@@ -28,8 +28,8 @@ public class TagController(ITagService tagService) : ControllerBase
         return Ok(tagId);
     }
 
-    [HttpPost("{id}")]
-    public async Task<ActionResult<List<TagToGetById>>> GetTags(Guid id)
+    [HttpGet("{id}")]
+    public async Task<ActionResult<List<TagToGet>>> GetTags(Guid id)
     {
         var tag = await tagService.GetTagById(id);
         

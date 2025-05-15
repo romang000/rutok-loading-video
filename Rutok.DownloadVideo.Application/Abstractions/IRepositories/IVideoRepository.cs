@@ -6,6 +6,6 @@ public interface IVideoRepository
 {
     Task<Guid> Add(VideoEntity videoEntity);
     Task<VideoEntity?> Get(Guid id);
-    Task<List<VideoEntity>> Get();
-    Task<Guid> Delete(Guid id);
+    Task<List<VideoEntity>?> GetAll();
+    Task<bool> Delete(Guid id);
 }

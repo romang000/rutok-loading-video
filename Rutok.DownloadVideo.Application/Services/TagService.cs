@@ -30,16 +30,16 @@ public class TagService(ITagRepository tagRepository) : ITagService
         return tag;
     }
 
-    public async Task<TagToGetById?> GetTagById(Guid id)
+    public async Task<TagToGet?> GetTagById(Guid id)
     {
         var entity = await tagRepository.Get(id);
         
         if (entity == null)
         {
-            return null!;
+            return null;
         }
         
-        var tag = new TagToGetById(entity.Id, entity.RuTag, entity.EngTag);
+        var tag = new TagToGet(entity.Id, entity.RuTag, entity.EngTag);
         
         return tag;
     }
@@ -47,10 +47,5 @@ public class TagService(ITagRepository tagRepository) : ITagService
     public Task<Guid?> DeleteTagById(Guid id)
     {
         return tagRepository.Delete(id);
-    }
-
-    public async Task<bool> FindByRuTagName(string ruName)
-    {
-        return await tagRepository.FindByName(ruName);
     }
 }

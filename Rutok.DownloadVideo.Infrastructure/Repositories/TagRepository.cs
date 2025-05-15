@@ -41,13 +41,7 @@ public class TagRepository(DownloadVideoDbContext context) : ITagRepository
         
         return rows > 0 ? id : null;
     }
-
-    public async Task<bool> FindByName(string name)
-    {
-        var isFind = await context.Tags.AnyAsync(t => t.RuTag == name || t.EngTag == name);
-        return isFind;
-    }
-
+    
     public async Task<List<TagEntity>> GetExisting(List<string> ruTags, List<string> engTags)
     {
         return await context.Tags

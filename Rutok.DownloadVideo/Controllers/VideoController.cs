@@ -15,4 +15,30 @@ public class VideoController(IVideoService service) : ControllerBase
         
         return Ok(videoId);
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<VideoToGet>> GetVideoById(Guid id)
+    {
+        var video = await service.GetVideoById(id);
+        
+        if(video == null) return NotFound("Видео с таким id не найдено");
+        
+        return Ok(video);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<VideoToGet>>> GetAllVideos()
+    {
+        var videos = await service.GetAllVideos();
+        return Ok(videos);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<bool>> DeleteVideo(Guid id)
+    {
+        var isDeleted = await service.DeleteVideo(id);
+        if (isDeleted) return Ok();
+        
+        return NotFound();
+    }
 }

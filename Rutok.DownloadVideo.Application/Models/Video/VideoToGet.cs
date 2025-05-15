@@ -2,7 +2,7 @@ using Rutok.DownloadVideo.Application.Models.Tags;
 
 namespace Rutok.DownloadVideo.Application.Models.Video;
 
-public record VideoToGetById(
+public record VideoToGet(
     Guid Id,
     string Name,
     DateTime CreatedAt,

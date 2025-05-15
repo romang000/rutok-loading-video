@@ -5,3 +5,9 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea/
 */Migrations
+*.dll
+*.pdb
+*.txt
+*.info
+*.cache
+.DS_Store

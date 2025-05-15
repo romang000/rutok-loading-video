@@ -17,10 +17,12 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
 
     public async Task<VideoEntity?> Get(Guid id)
     {
-        return await context.Videos.FindAsync(id);
+        return await context.Videos
+            .Include(v => v.Tags)
+            .FirstOrDefaultAsync(v => v.Id == id);
     }
     
-    public async Task<List<VideoEntity>> Get()
+    public async Task<List<VideoEntity>?> GetAll()
     {
         return await context.Videos
             .Include(v => v.Tags)
@@ -28,8 +30,12 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
             .ToListAsync();
     }
 
-    public Task<Guid> Delete(Guid id)
+    public async Task<bool> Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var rows = await context.Videos
+            .Where(v => v.Id == id)
+            .ExecuteDeleteAsync();
+        
+        return rows > 0;
     }
 }
