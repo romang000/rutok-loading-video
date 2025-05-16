@@ -1,10 +1,12 @@
+using MapsterMapper;
 using Rutok.DownloadVideo.Application.Abstractions.IRepositories;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
+using Rutok.DownloadVideo.Application.Models.Tags;
 using Rutok.DownloadVideo.Application.Models.Video;
 using Rutok.DownloadVideo.Domain.Entities;
 
 namespace Rutok.DownloadVideo.Application.Services;
-public class VideoService(IVideoRepository videoRepository, ITagRepository tagRepository) : IVideoService
+public class VideoService(IVideoRepository videoRepository, ITagRepository tagRepository, IMapper mapper) : IVideoService
 {
     public async Task<Guid?> CreateVideo(VideoToCreate video)
     {
@@ -44,8 +46,65 @@ public class VideoService(IVideoRepository videoRepository, ITagRepository tagRe
         return videoId;
     }
 
-    public Task<List<VideoToGetById>> GetVideoById(Guid id)
+    public async Task<VideoToGet?> GetVideoById(Guid id)
     {
-        throw new NotImplementedException();
+        var videoEntity = await videoRepository.Get(id);
+        
+        if (videoEntity == null) return null;
+
+        var tags =  videoEntity.Tags.Select(t => new TagToGet(
+            t.Id,
+            t.RuTag,
+            t.EngTag
+        ))
+            .ToList();
+        
+        var video = new VideoToGet(
+            videoEntity.Id,
+            videoEntity.Name,
+            videoEntity.CreatedAt,
+            videoEntity.IsDeleted,
+            videoEntity.Views,
+            videoEntity.Likes,
+            videoEntity.Description,
+            videoEntity.UserId,
+            videoEntity.Duration,
+            videoEntity.IsBanned,
+            videoEntity.IdVideo,
+            videoEntity.CommentsAmount,
+            tags
+        );
+        
+        return video;
+    }
+
+    public async Task<List<VideoToGet>?> GetAllVideos()
+    {
+        var videosEntity = await videoRepository.GetAll();
+        
+        if (videosEntity is null) return null;
+        
+        var videos = videosEntity.Select(v => new VideoToGet(
+            v.Id,
+            v.Name,
+            v.CreatedAt,
+            v.IsDeleted,
+            v.Views,
+            v.Likes,
+            v.Description,
+            v.UserId,
+            v.Duration,
+            v.IsBanned,
+            v.IdVideo,
+            v.CommentsAmount,
+            v.Tags.Select(mapper.Map<TagEntity, TagToGet>).ToList()
+        )).ToList();
+        return videos;
+    }
+
+    public async Task<bool> DeleteVideo(Guid id)
+    {
+        var isDeleted = await videoRepository.Delete(id);
+        return isDeleted;
     }
 }

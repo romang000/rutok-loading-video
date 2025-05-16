@@ -7,6 +7,7 @@ namespace Rutok.DownloadVideo.Application.Abstractions.IServices;
 public interface IVideoService
 {
     Task<Guid?> CreateVideo(VideoToCreate video);
-    //Task<VideoEntity> AddTagToVideo(List<TagEntity> tagId, Guid videoId);
-    Task<List<VideoToGetById>> GetVideoById(Guid id);
+    Task<VideoToGet?> GetVideoById(Guid id);
+    Task<List<VideoToGet>?> GetAllVideos();
+    Task<bool> DeleteVideo(Guid id);
 }

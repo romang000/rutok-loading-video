@@ -8,6 +8,5 @@ public interface ITagRepository
     Task<TagEntity?> Get(Guid id);
     Task<Guid?> Add(TagEntity entity);
     Task<Guid?> Delete(Guid id);
-    Task<bool> FindByName(string name);
     Task<List<TagEntity>> GetExisting(List<string> ruTags, List<string> engTags);
 }
