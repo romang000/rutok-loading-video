@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
+using Rutok.DownloadVideo.Application.Models.Tags;
 using Rutok.DownloadVideo.Application.Models.Video;
 
 namespace Rutok.DownloadVideo.Controllers;
@@ -12,17 +13,17 @@ public class VideoController(IVideoService service) : ControllerBase
     public async Task<ActionResult<Guid>> CreateVideo([FromBody] VideoToCreate video)
     {
         var videoId = await service.CreateVideo(video);
-        
+
         return Ok(videoId);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<VideoToGet>> GetVideoById(Guid id)
+    public async Task<ActionResult<VideoToGet>> GetVideoById([FromRoute] Guid id)
     {
         var video = await service.GetVideoById(id);
-        
-        if(video == null) return NotFound("Видео с таким id не найдено");
-        
+
+        if (video == null) return NotFound("Видео с таким id не найдено");
+
         return Ok(video);
     }
 
@@ -33,12 +34,37 @@ public class VideoController(IVideoService service) : ControllerBase
         return Ok(videos);
     }
 
+    [HttpGet("{id}/tags")]
+    public async Task<ActionResult<List<TagToGet>>> GetAllTags([FromRoute] Guid id)
+    {
+        var response = await service.GetTagsByVideo(id);
+        if (response == null) return NotFound();
+
+        return Ok(response);
+    }
+
     [HttpDelete("{id}")]
-    public async Task<ActionResult<bool>> DeleteVideo(Guid id)
+    public async Task<ActionResult<bool>> DeleteVideo([FromRoute] Guid id)
     {
         var isDeleted = await service.DeleteVideo(id);
         if (isDeleted) return Ok();
-        
+
         return NotFound();
     }
+
+    [HttpPatch("{id}/ban")]
+    public async Task<ActionResult<bool>> BanVideo([FromRoute] Guid id)
+    {
+        var isBan = await service.BanVideo(id);
+        
+        return isBan ? Ok() : NotFound();
+    }
+
+    [HttpPatch("{id}/unban")]
+    public async Task<ActionResult<bool>> UnbanVideo([FromRoute] Guid id)
+    {
+        var isUnban = await service.UnbanVideo(id);
+        return isUnban ? Ok() : NotFound();
+    }
+
 }

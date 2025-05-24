@@ -8,4 +8,7 @@ public interface IVideoRepository
     Task<VideoEntity?> Get(Guid id);
     Task<List<VideoEntity>?> GetAll();
     Task<bool> Delete(Guid id);
+    Task<List<TagEntity>?> GetTags(Guid id);
+    Task<bool> Ban(Guid videoId);
+    Task<bool> Unban(Guid videoId);
 }

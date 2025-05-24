@@ -10,4 +10,7 @@ public interface IVideoService
     Task<VideoToGet?> GetVideoById(Guid id);
     Task<List<VideoToGet>?> GetAllVideos();
     Task<bool> DeleteVideo(Guid id);
+    Task<List<TagToGet>?> GetTagsByVideo(Guid id);
+    Task<bool> BanVideo(Guid videoId);
+    Task<bool> UnbanVideo(Guid videoId);
 }
