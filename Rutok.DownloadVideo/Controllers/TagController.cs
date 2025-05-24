@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
 using Rutok.DownloadVideo.Application.Models.Tags;
 
-
 namespace Rutok.DownloadVideo.Controllers;
 
 [ApiController]
