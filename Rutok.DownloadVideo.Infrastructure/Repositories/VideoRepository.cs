@@ -38,4 +38,34 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         
         return rows > 0;
     }
+
+    public async Task<List<TagEntity>?> GetTags(Guid videoId)
+    {
+        var video = await context.Videos.Include(videoEntity => videoEntity.Tags).FirstOrDefaultAsync(v => v.Id == videoId);
+        if (video is null) return null;
+        
+        return video.Tags;
+    }
+
+    public async Task<bool> Ban(Guid videoId)
+    {
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
+        if (video is null) return false;
+        
+        video.IsBanned = true;
+        await context.SaveChangesAsync();
+        
+        return true;
+    }
+
+    public async Task<bool> Unban(Guid videoId)
+    {
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
+        if (video is null) return false;
+        
+        video.IsBanned = false;
+        await context.SaveChangesAsync();
+        
+        return true;
+    }
 }

@@ -107,4 +107,26 @@ public class VideoService(IVideoRepository videoRepository, ITagRepository tagRe
         var isDeleted = await videoRepository.Delete(id);
         return isDeleted;
     }
+
+    public async Task<List<TagToGet>?> GetTagsByVideo(Guid id)
+    {
+        var tagsEntity = await videoRepository.GetTags(id);
+        if (tagsEntity is null) return null;
+        
+        var tags = tagsEntity.Select(t => mapper.Map<TagEntity, TagToGet>(t)).ToList();
+        
+        return tags;
+    }
+
+    public async Task<bool> BanVideo(Guid videoId)
+    {
+        var result= await videoRepository.Ban(videoId);
+        return result;
+    }
+
+    public async Task<bool> UnbanVideo(Guid videoId)
+    {
+        var result= await videoRepository.Unban(videoId);
+        return result;
+    }
 }
