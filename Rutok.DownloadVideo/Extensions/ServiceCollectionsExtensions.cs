@@ -64,6 +64,11 @@ public static class ServiceCollectionsExtensions
         
         builder.Services.AddScoped<IVideoService, VideoService>();
         builder.Services.AddScoped<IVideoRepository, VideoRepository>();
+        
+        builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+        builder.Services.AddScoped<ICommentService, CommentService>();
+
+        builder.Services.AddScoped<IBaseRepository, BaseRepository>();
         return builder;
     }
 

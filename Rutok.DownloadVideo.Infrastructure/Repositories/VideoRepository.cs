@@ -68,4 +68,18 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         
         return true;
     }
+
+    public async Task<bool> AddComment(Guid commentId, Guid videoId)
+    {
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
+        if (video is null) return false;
+        
+        var comment = await context.Comments.FirstOrDefaultAsync(c => c.Id == commentId);
+        if (comment is null) return false;
+        
+        video.Comments.Add(comment);
+        video.CommentsAmount++;
+        
+        return true;
+    }
 }

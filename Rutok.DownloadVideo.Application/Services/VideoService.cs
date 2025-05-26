@@ -6,7 +6,9 @@ using Rutok.DownloadVideo.Application.Models.Video;
 using Rutok.DownloadVideo.Domain.Entities;
 
 namespace Rutok.DownloadVideo.Application.Services;
-public class VideoService(IVideoRepository videoRepository, ITagRepository tagRepository, IMapper mapper) : IVideoService
+public class VideoService(IVideoRepository videoRepository,
+    ITagRepository tagRepository,
+    IMapper mapper) : IVideoService
 {
     public async Task<Guid?> CreateVideo(VideoToCreate video)
     {

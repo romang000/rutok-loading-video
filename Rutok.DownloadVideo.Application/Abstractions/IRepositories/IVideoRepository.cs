@@ -11,4 +11,5 @@ public interface IVideoRepository
     Task<List<TagEntity>?> GetTags(Guid id);
     Task<bool> Ban(Guid videoId);
     Task<bool> Unban(Guid videoId);
+    Task<bool> AddComment(Guid commentId, Guid videoId);
 }
