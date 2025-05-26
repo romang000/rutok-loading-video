@@ -9,16 +9,10 @@ public class DownloadVideoDbContext : DbContext
     { }
     
     public DbSet<VideoEntity> Videos { get; set; }
-    
     public DbSet<TagEntity> Tags { get; set; }
-    
-    //public DbSet<SubscriptionEntity> Subscriptions { get; set; }
-    
+    public DbSet<SubscriptionEntity> Subscriptions { get; set; }
     public DbSet<CommentEntity> Comments { get; set; }
-    
-   // public DbSet<UserCommentedVideoEntity> UserCommented { get; set; }
-    
-    //public DbSet<UserLikesEntity> UserLikes { get; set; }
-    
-   // public DbSet<UserWatchedVideoEntity> WatchedVideo { get; set; }
+    public DbSet<UserCommentedVideoEntity> UserCommented { get; set; }
+    public DbSet<UserLikesEntity> UserLikes { get; set; }
+    public DbSet<UserWatchedVideoEntity> WatchedVideo { get; set; }
 }
