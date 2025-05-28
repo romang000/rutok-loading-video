@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 using Rutok.DownloadVideo.Application.Abstractions.IRepositories;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
 using Rutok.DownloadVideo.Application.Services;
+using Rutok.DownloadVideo.Domain.Options;
+using Rutok.DownloadVideo.Infrastructure.BackgroundServices;
 using Rutok.DownloadVideo.Infrastructure.Context;
 using Rutok.DownloadVideo.Infrastructure.Repositories;
 
@@ -69,6 +71,19 @@ public static class ServiceCollectionsExtensions
         builder.Services.AddScoped<ICommentService, CommentService>();
 
         builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+        return builder;
+    }
+
+    public static WebApplicationBuilder AddOptions(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+        return builder;
+    }
+
+    public static WebApplicationBuilder AddBackgroundService(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddHostedService<CreateVideoConsumer>();
+        
         return builder;
     }
 
