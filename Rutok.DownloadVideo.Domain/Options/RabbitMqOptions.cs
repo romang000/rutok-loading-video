@@ -7,5 +7,5 @@ public class RabbitMqOptions
     public string UserName { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string VirtualHost { get; set; } = null!;
-    public string CreateVideoQueueName { get; set; } = null!;
+    public string VideoDataQueueName { get; set; } = null!;
 }

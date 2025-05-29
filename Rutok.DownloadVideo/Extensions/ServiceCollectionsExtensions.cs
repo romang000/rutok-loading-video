@@ -82,7 +82,7 @@ public static class ServiceCollectionsExtensions
 
     public static WebApplicationBuilder AddBackgroundService(this WebApplicationBuilder builder)
     {
-        builder.Services.AddHostedService<CreateVideoConsumer>();
+        builder.Services.AddScoped<IMessageProducer, MessageProducer>();
         
         return builder;
     }

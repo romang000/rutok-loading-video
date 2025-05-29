@@ -2,17 +2,20 @@ using Microsoft.AspNetCore.Mvc;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
 using Rutok.DownloadVideo.Application.Models.Tags;
 using Rutok.DownloadVideo.Application.Models.Video;
+using Rutok.DownloadVideo.Infrastructure.BackgroundServices;
 
 namespace Rutok.DownloadVideo.Controllers;
 
 [ApiController]
 [Route("api/videos/")]
-public class VideoController(IVideoService service) : ControllerBase
+public class VideoController(IVideoService service, IMessageProducer messageProducer) : ControllerBase
 {
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateVideo([FromBody] VideoToCreate video)
     {
         var videoId = await service.CreateVideo(video);
+        
+        messageProducer.SendingMessage(video);
 
         return Ok(videoId);
     }
