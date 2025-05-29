@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Rutok.DownloadVideo.Domain.Entities;
 
 public class SubscriptionEntity : BaseEntity<Guid>

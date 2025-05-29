@@ -1,6 +1,6 @@
 using Rutok.DownloadVideo.Application.Extensions;
 using Rutok.DownloadVideo.Extensions;
-//добавить ограничение на количество тего на видосе
+//TODO:добавить ограничение на количество тего на видосе
 var builder = WebApplication.CreateBuilder(args); 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -12,7 +12,9 @@ builder
     .AddData()
     .AddSwagger()
     .AddApplicationServices()
-    .AddIntegrationServices();
+    .AddIntegrationServices()
+    .AddBackgroundService()
+    .AddOptions();
 
 var app = builder.Build();
 
