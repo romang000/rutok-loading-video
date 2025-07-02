@@ -4,11 +4,11 @@ namespace Rutok.DownloadVideo.Application.Abstractions.IRepositories;
 
 public interface ICommentRepository
 {
-    Task<Guid> Add(CommentEntity comment);
-    Task<CommentEntity?> GetById(Guid id);
-    Task<List<CommentEntity>?> GetByVideoId(Guid videoId);
-    Task<List<CommentEntity>?> GetByUserId(Guid userId);
+    Task<long> Add(CommentEntity comment);
+    Task<CommentEntity?> GetById(long id);
+    Task<List<CommentEntity>?> GetByVideoId(long videoId);
+    Task<List<CommentEntity>?> GetByUserId(long userId);
     Task<bool> Update(CommentEntity comment);
     Task<List<CommentEntity>?> GetAll();
-    Task<bool> Delete(Guid id);
+    Task<bool> Delete(long id);
 }

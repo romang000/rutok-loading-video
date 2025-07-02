@@ -4,9 +4,9 @@ namespace Rutok.DownloadVideo.Application.Abstractions.IServices;
 
 public interface ITagService
 {
-    Task<Guid?> CreateTag(TagToCreate tag);
+    Task<long?> CreateTag(TagToCreate tag);
     Task<List<TagToGet>> GetAllTags();
-    Task<TagToGet?> GetTagById(Guid id);
-    Task<Guid?> DeleteTagById(Guid id);
+    Task<TagToGet?> GetTagById(long id);
+    Task<long?> DeleteTagById(long id);
     
 }

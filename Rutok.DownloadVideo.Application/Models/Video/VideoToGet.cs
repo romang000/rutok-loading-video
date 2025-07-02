@@ -3,14 +3,14 @@ using Rutok.DownloadVideo.Application.Models.Tags;
 namespace Rutok.DownloadVideo.Application.Models.Video;
 
 public record VideoToGet(
-    Guid Id,
+    long Id,
     string Name,
     DateTime CreatedAt,
     bool IsDeleted,
     int View,
     int Likes,
     string Description,
-    Guid UserId,
+    long UserId,
     TimeSpan Duration,
     bool IsBanned,
     long IdVideo,

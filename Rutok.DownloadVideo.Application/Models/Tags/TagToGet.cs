@@ -1,7 +1,7 @@
 namespace Rutok.DownloadVideo.Application.Models.Tags;
 
 public record TagToGet(
-    Guid Id,
+    long Id,
     string RuTag,
     string EngTag
     );

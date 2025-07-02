@@ -4,7 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea/
-*/Migrations
 *.dll
 *.pdb
 *.txt

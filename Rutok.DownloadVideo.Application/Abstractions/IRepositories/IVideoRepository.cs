@@ -4,12 +4,13 @@ namespace Rutok.DownloadVideo.Application.Abstractions.IRepositories;
 
 public interface IVideoRepository
 {
-    Task<Guid> Add(VideoEntity videoEntity);
-    Task<VideoEntity?> Get(Guid id);
+    Task<long> Add(VideoEntity videoEntity);
+    Task<VideoEntity?> Get(long id);
     Task<List<VideoEntity>?> GetAll();
-    Task<bool> Delete(Guid id);
-    Task<List<TagEntity>?> GetTags(Guid id);
-    Task<bool> Ban(Guid videoId);
-    Task<bool> Unban(Guid videoId);
-    Task<bool> AddComment(Guid commentId, Guid videoId);
+    Task<bool> Delete(long id);
+    Task<List<TagEntity>?> GetTags(long id);
+    Task<bool> Ban(long videoId);
+    Task<bool> Unban(long videoId);
+    Task<bool> AddComment(long commentId, long videoId);
+    Task<List<VideoEntity>> GetByUserId(long userId);
 }

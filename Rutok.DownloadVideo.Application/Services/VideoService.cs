@@ -10,7 +10,7 @@ public class VideoService(IVideoRepository videoRepository,
     ITagRepository tagRepository,
     IMapper mapper) : IVideoService
 {
-    public async Task<Guid?> CreateVideo(VideoToCreate video)
+    public async Task<long?> CreateVideo(VideoToCreate video, long userId)
     {
         var existingTags = await tagRepository.GetExisting(
             video.Tags.Select(t=> t.RuTag).ToList(),
@@ -21,25 +21,25 @@ public class VideoService(IVideoRepository videoRepository,
             .Where(vt => !existingTags.Any(et => et.RuTag == vt.RuTag || et.EngTag == vt.EngTag))
             .Select(t => new TagEntity
             {
-                Id = Guid.NewGuid(),
+                //Id = Guid.NewGuid(),
                 RuTag = t.RuTag,
                 EngTag = t.EngTag,
             }).ToList();
         
         var entity = new VideoEntity
         {
-            Id = Guid.NewGuid(),
+           // Id = Guid.NewGuid(),
             Name = video.Name,
             CreatedAt = DateTime.UtcNow,
-            IsDeleted = video.IsDeleted,
-            Views = video.Views,
-            Likes = video.Likes,
+            IsDeleted = false,
+            Views = 0,
+            Likes = 0,
             Description = video.Description,
-            UserId = video.UserId,
-            Duration = video.Duration,
-            IsBanned = video.IsBanned,
+            UserId = userId,
+           // Duration = video.Duration,
+           // IsBanned = false,
             IdVideo = video.IdVideo,
-            CommentsAmount = video.CommentsAmount,
+            //CommentsAmount = video.CommentsAmount,
             Tags = tagEntities.Concat(existingTags).ToList()
         };
         
@@ -48,7 +48,7 @@ public class VideoService(IVideoRepository videoRepository,
         return videoId;
     }
 
-    public async Task<VideoToGet?> GetVideoById(Guid id)
+    public async Task<VideoToGet?> GetVideoById(long id)
     {
         var videoEntity = await videoRepository.Get(id);
         
@@ -104,13 +104,13 @@ public class VideoService(IVideoRepository videoRepository,
         return videos;
     }
 
-    public async Task<bool> DeleteVideo(Guid id)
+    public async Task<bool> DeleteVideo(long id)
     {
         var isDeleted = await videoRepository.Delete(id);
         return isDeleted;
     }
 
-    public async Task<List<TagToGet>?> GetTagsByVideo(Guid id)
+    public async Task<List<TagToGet>?> GetTagsByVideo(long id)
     {
         var tagsEntity = await videoRepository.GetTags(id);
         if (tagsEntity is null) return null;
@@ -120,15 +120,27 @@ public class VideoService(IVideoRepository videoRepository,
         return tags;
     }
 
-    public async Task<bool> BanVideo(Guid videoId)
+    public async Task<bool> BanVideo(long videoId)
     {
         var result= await videoRepository.Ban(videoId);
         return result;
     }
 
-    public async Task<bool> UnbanVideo(Guid videoId)
+    public async Task<bool> UnbanVideo(long videoId)
     {
         var result= await videoRepository.Unban(videoId);
+        return result;
+    }
+
+    public async Task<List<long>> GetVideoByUserId(long userId)
+    {
+        var videosEntity = await videoRepository.GetByUserId(userId);
+        var result = new List<long>();
+        
+        foreach (var v in videosEntity)
+        {
+            result.Add(v.Id);
+        }
         return result;
     }
 }

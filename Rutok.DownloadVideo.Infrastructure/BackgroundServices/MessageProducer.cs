@@ -14,6 +14,7 @@ public class MessageProducer : IMessageProducer
             UserName = "user",
             Password = "password"
         };
+        
         var conn = factory.CreateConnection();
         using var channel = conn.CreateModel();
         
@@ -21,7 +22,7 @@ public class MessageProducer : IMessageProducer
             "videos",
             durable: true,
             exclusive: false
-            );
+        );
         
         var json = JsonSerializer.Serialize(message);
         var body = Encoding.UTF8.GetBytes(json);

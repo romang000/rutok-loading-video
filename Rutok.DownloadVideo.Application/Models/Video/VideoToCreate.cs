@@ -5,14 +5,14 @@ namespace Rutok.DownloadVideo.Application.Models.Video;
 
 public record VideoToCreate (
     string Name,
-    bool IsDeleted,
-    int Views,
-    int Likes,
+    //bool IsDeleted,
+  //  int Views,
+  //  int Likes,
     string Description,
-    Guid UserId,
-    TimeSpan Duration,
-    bool IsBanned,
+    //long UserId,
+   // TimeSpan Duration,
+   // bool IsBanned,
     long IdVideo,
-    int CommentsAmount,
+   // int CommentsAmount,
     List<TagToCreate> Tags
     );

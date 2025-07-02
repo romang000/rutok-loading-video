@@ -8,11 +8,11 @@ namespace Rutok.DownloadVideo.Application.Services;
 
 public class TagService(ITagRepository tagRepository) : ITagService
 {
-    public async Task<Guid?> CreateTag(TagToCreate tag)
+    public async Task<long?> CreateTag(TagToCreate tag)
     {
         var tagEntity = new TagEntity
         {
-            Id = Guid.NewGuid(),
+            //Id = Guid.NewGuid(),
             RuTag = tag.RuTag,
             EngTag = tag.EngTag,
         };
@@ -30,7 +30,7 @@ public class TagService(ITagRepository tagRepository) : ITagService
         return tag;
     }
 
-    public async Task<TagToGet?> GetTagById(Guid id)
+    public async Task<TagToGet?> GetTagById(long id)
     {
         var entity = await tagRepository.Get(id);
         
@@ -44,7 +44,7 @@ public class TagService(ITagRepository tagRepository) : ITagService
         return tag;
     }
 
-    public Task<Guid?> DeleteTagById(Guid id)
+    public Task<long?> DeleteTagById(long id)
     {
         return tagRepository.Delete(id);
     }

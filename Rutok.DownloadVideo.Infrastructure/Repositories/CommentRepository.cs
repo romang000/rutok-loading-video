@@ -7,7 +7,7 @@ namespace Rutok.DownloadVideo.Infrastructure.Repositories;
 
 public class CommentRepository(DownloadVideoDbContext context) : ICommentRepository
 {
-    public async Task<Guid> Add(CommentEntity comment)
+    public async Task<long> Add(CommentEntity comment)
     {
         var newEntity = await context.Comments.AddAsync(comment);
         await context.SaveChangesAsync();
@@ -15,7 +15,7 @@ public class CommentRepository(DownloadVideoDbContext context) : ICommentReposit
         return newEntity.Entity.Id;
     }
 
-    public async Task<CommentEntity?> GetById(Guid id)
+    public async Task<CommentEntity?> GetById(long id)
     {
         var comment = await context.Comments.FirstOrDefaultAsync(c => c.Id == id);
         if (comment is null) return null;
@@ -23,7 +23,7 @@ public class CommentRepository(DownloadVideoDbContext context) : ICommentReposit
         return comment;
     }
 
-    public async Task<List<CommentEntity>?> GetByVideoId(Guid videoId)
+    public async Task<List<CommentEntity>?> GetByVideoId(long videoId)
     {
         var comments = await context.Comments.Where(c => c.VideoId == videoId).ToListAsync();
         
@@ -32,7 +32,7 @@ public class CommentRepository(DownloadVideoDbContext context) : ICommentReposit
         return comments;
     }
 
-    public async Task<List<CommentEntity>?> GetByUserId(Guid userId)
+    public async Task<List<CommentEntity>?> GetByUserId(long userId)
     {
         var comments = await context.Comments.Where(c => c.UserId == userId).ToListAsync();
         
@@ -60,7 +60,7 @@ public class CommentRepository(DownloadVideoDbContext context) : ICommentReposit
         return result > 0;
     }
 
-    public async Task<bool> Delete(Guid id)
+    public async Task<bool> Delete(long id)
     {
         var result = await context.Comments.Where(c => c.Id == id).ExecuteDeleteAsync();
         

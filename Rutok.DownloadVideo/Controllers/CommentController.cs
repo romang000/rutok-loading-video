@@ -1,17 +1,21 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rutok.DownloadVideo.Application.Abstractions.IServices;
 using Rutok.DownloadVideo.Application.Models.Comments;
 
 namespace Rutok.DownloadVideo.Controllers;
 
+//[Authorize]
 [ApiController]
 [Route("api/comments")]
 public class CommentController(ICommentService commentService) : ControllerBase
 {
+    //TODO:доставать из кукисов userId
+    //TODO:по этому ендпоинту просто другой мс обращается
     [HttpPost]
-    public async Task<ActionResult<Guid?>> AddCommentToVideo(CommentToAdd comment)
+    public async Task<ActionResult<long?>> AddCommentToVideo(CommentToAdd comment, long userId)
     {
-        var response = await commentService.AddComment(comment);
+        var response = await commentService.AddComment(comment, userId);
         if (response is null) return NotFound("Video not found");
         
         return Ok(response);
@@ -27,7 +31,7 @@ public class CommentController(ICommentService commentService) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CommentsToGet>> GetComment([FromRoute] Guid id)
+    public async Task<ActionResult<CommentsToGet>> GetComment([FromRoute] long id)
     {
         var response = await commentService.GetById(id);
         
@@ -37,7 +41,7 @@ public class CommentController(ICommentService commentService) : ControllerBase
     }
 
     [HttpGet("videos/{id}")]
-    public async Task<ActionResult<CommentsToGet>> GetCommentsByVideo([FromRoute] Guid id)
+    public async Task<ActionResult<CommentsToGet>> GetCommentsByVideo([FromRoute] long id)
     {
         var response = await commentService.GetByVideoId(id);
         if (response is null) return NotFound("Comments not found");
@@ -46,7 +50,7 @@ public class CommentController(ICommentService commentService) : ControllerBase
     }
 
     [HttpGet("users/{id}")]
-    public async Task<ActionResult<CommentsToGet>> GetCommentsByUser([FromRoute] Guid id)
+    public async Task<ActionResult<CommentsToGet>> GetCommentsByUser([FromRoute] long id)
     {
         var response = await commentService.GetByUserId(id);
         if (response is null) return NotFound("Comments not found");
@@ -55,7 +59,7 @@ public class CommentController(ICommentService commentService) : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public async Task<ActionResult> UpdateComment([FromRoute] Guid id, [FromHeader] string text)
+    public async Task<ActionResult> UpdateComment([FromRoute] long id, [FromHeader] string text)
     {
         var response = await commentService.Update(id, text);
         if (!response) return NotFound("Comment not found");
@@ -64,7 +68,7 @@ public class CommentController(ICommentService commentService) : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteComment([FromRoute] Guid id)
+    public async Task<ActionResult> DeleteComment([FromRoute] long id)
     {
         var response = await commentService.Delete(id);
         if (!response) return NotFound("Comment not found");

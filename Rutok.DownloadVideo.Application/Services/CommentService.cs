@@ -11,16 +11,20 @@ public class CommentService (ICommentRepository commentRepository,
     IBaseRepository baseRepository,
     IMapper mapper) : ICommentService
 {
-    public async Task<Guid?> AddComment(CommentToAdd comment)
+    public async Task<long?> AddComment(CommentToAdd comment, long userId)
     {
+        var videoExist = await videoRepository.Get(comment.VideoId);
+        
+        if (videoExist == null) return null;
+        
         var commentEntity = new CommentEntity
         {
-            Id = Guid.NewGuid(),
+           // Id = Guid.NewGuid(),
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             Text = comment.Text,
             VideoId = comment.VideoId,
-            UserId = comment.UserId,
+            UserId = userId,
             IsDeleted = false
         };
         
@@ -35,7 +39,7 @@ public class CommentService (ICommentRepository commentRepository,
         return commentId;
     }
 
-    public async Task<CommentsToGet?> GetById(Guid id)
+    public async Task<CommentsToGet?> GetById(long id)
     {
         var commentEntity = await commentRepository.GetById(id);
         if (commentEntity == null) return null;
@@ -45,7 +49,7 @@ public class CommentService (ICommentRepository commentRepository,
         return comment;
     }
 
-    public async Task<List<CommentsToGet>?> GetByVideoId(Guid videoId)
+    public async Task<List<CommentsToGet>?> GetByVideoId(long videoId)
     {
         var commentsListEntity = await commentRepository.GetByVideoId(videoId);
         if (commentsListEntity == null) return null;
@@ -56,7 +60,7 @@ public class CommentService (ICommentRepository commentRepository,
     }
 
 
-    public async Task<List<CommentsToGet>?> GetByUserId(Guid userId)
+    public async Task<List<CommentsToGet>?> GetByUserId(long userId)
     {
         var commentsListEntity = await commentRepository.GetByUserId(userId);
         if (commentsListEntity == null) return null;
@@ -66,7 +70,7 @@ public class CommentService (ICommentRepository commentRepository,
         return comments;
     }
 
-    public async Task<bool> Update(Guid id, string text)
+    public async Task<bool> Update(long id, string text)
     {
         var commentToUpdate = new CommentsToUpdate(text, id);
         
@@ -88,7 +92,7 @@ public class CommentService (ICommentRepository commentRepository,
         return comments;
     }
 
-    public async Task<bool> Delete(Guid id)
+    public async Task<bool> Delete(long id)
     {
         var isDelete = await commentRepository.Delete(id);
         if (!isDelete) return false;

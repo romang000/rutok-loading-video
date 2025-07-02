@@ -7,7 +7,7 @@ namespace Rutok.DownloadVideo.Infrastructure.Repositories;
 
 public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
 {
-    public async Task<Guid> Add(VideoEntity videoEntity)
+    public async Task<long> Add(VideoEntity videoEntity)
     {
         var newEntity = await context.Videos.AddAsync(videoEntity);
         await context.SaveChangesAsync();
@@ -15,7 +15,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         return newEntity.Entity.Id;
     }
 
-    public async Task<VideoEntity?> Get(Guid id)
+    public async Task<VideoEntity?> Get(long id)
     {
         return await context.Videos
             .Include(v => v.Tags)
@@ -30,7 +30,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
             .ToListAsync();
     }
 
-    public async Task<bool> Delete(Guid id)
+    public async Task<bool> Delete(long id)
     {
         var rows = await context.Videos
             .Where(v => v.Id == id)
@@ -39,7 +39,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         return rows > 0;
     }
 
-    public async Task<List<TagEntity>?> GetTags(Guid videoId)
+    public async Task<List<TagEntity>?> GetTags(long videoId)
     {
         var video = await context.Videos.Include(videoEntity => videoEntity.Tags).FirstOrDefaultAsync(v => v.Id == videoId);
         if (video is null) return null;
@@ -47,7 +47,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         return video.Tags;
     }
 
-    public async Task<bool> Ban(Guid videoId)
+    public async Task<bool> Ban(long videoId)
     {
         var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
         if (video is null) return false;
@@ -58,7 +58,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         return true;
     }
 
-    public async Task<bool> Unban(Guid videoId)
+    public async Task<bool> Unban(long videoId)
     {
         var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
         if (video is null) return false;
@@ -69,7 +69,7 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         return true;
     }
 
-    public async Task<bool> AddComment(Guid commentId, Guid videoId)
+    public async Task<bool> AddComment(long commentId, long videoId)
     {
         var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
         if (video is null) return false;
@@ -81,5 +81,11 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         video.CommentsAmount++;
         
         return true;
+    }
+
+    public async Task<List<VideoEntity>> GetByUserId(long userId)
+    {
+        var video = await context.Videos.Where(v => v.UserId == userId).ToListAsync();
+        return video;
     }
 }

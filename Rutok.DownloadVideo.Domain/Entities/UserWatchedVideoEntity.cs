@@ -1,7 +1,7 @@
 namespace Rutok.DownloadVideo.Domain.Entities;
 
-public class UserWatchedVideoEntity: BaseEntity<Guid>
+public class UserWatchedVideoEntity: BaseEntity<long>
 {
-    public Guid UserId { get; set; }
-    public Guid VideoId { get; set; }
+    public long UserId { get; set; }
+    public long VideoId { get; set; }
 }

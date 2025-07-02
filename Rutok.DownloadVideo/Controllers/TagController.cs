@@ -28,7 +28,7 @@ public class TagController(ITagService tagService) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<List<TagToGet>>> GetTags(Guid id)
+    public async Task<ActionResult<List<TagToGet>>> GetTags(long id)
     {
         var tag = await tagService.GetTagById(id);
         
@@ -38,7 +38,7 @@ public class TagController(ITagService tagService) : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Guid>> DeleteTag(Guid id)
+    public async Task<ActionResult<long>> DeleteTag(long id)
     {
         var tag = await tagService.DeleteTagById(id);
         

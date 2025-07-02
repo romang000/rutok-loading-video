@@ -6,11 +6,12 @@ namespace Rutok.DownloadVideo.Application.Abstractions.IServices;
 
 public interface IVideoService
 {
-    Task<Guid?> CreateVideo(VideoToCreate video);
-    Task<VideoToGet?> GetVideoById(Guid id);
+    Task<long?> CreateVideo(VideoToCreate video, long userId);
+    Task<VideoToGet?> GetVideoById(long id);
     Task<List<VideoToGet>?> GetAllVideos();
-    Task<bool> DeleteVideo(Guid id);
-    Task<List<TagToGet>?> GetTagsByVideo(Guid id);
-    Task<bool> BanVideo(Guid videoId);
-    Task<bool> UnbanVideo(Guid videoId);
+    Task<bool> DeleteVideo(long id);
+    Task<List<TagToGet>?> GetTagsByVideo(long id);
+    Task<bool> BanVideo(long videoId);
+    Task<bool> UnbanVideo(long videoId);
+    Task<List<long>> GetVideoByUserId(long userId);
 }

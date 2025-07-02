@@ -15,4 +15,9 @@ public class DownloadVideoDbContext : DbContext
     public DbSet<UserCommentedVideoEntity> UserCommented { get; set; }
     public DbSet<UserLikesEntity> UserLikes { get; set; }
     public DbSet<UserWatchedVideoEntity> WatchedVideo { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDefaultSchema("download_video_service");
+    }
 }
