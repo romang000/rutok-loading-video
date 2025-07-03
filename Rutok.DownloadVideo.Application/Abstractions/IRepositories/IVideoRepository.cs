@@ -13,4 +13,5 @@ public interface IVideoRepository
     Task<bool> Unban(long videoId);
     Task<bool> AddComment(long commentId, long videoId);
     Task<List<VideoEntity>> GetByUserId(long userId);
+    Task<long?> AddLike(long videoId);
 }

@@ -14,4 +14,5 @@ public interface IVideoService
     Task<bool> BanVideo(long videoId);
     Task<bool> UnbanVideo(long videoId);
     Task<List<long>> GetVideoByUserId(long userId);
+    Task<long?> ChangeLikesByVideoId(long videoId);
 }

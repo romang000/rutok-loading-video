@@ -88,4 +88,14 @@ public class VideoRepository(DownloadVideoDbContext context) : IVideoRepository
         var video = await context.Videos.Where(v => v.UserId == userId).ToListAsync();
         return video;
     }
+
+    public async Task<long?> AddLike(long videoId)
+    {
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId);
+        if (video is null) return null;
+        
+        video.Likes++;
+        await context.SaveChangesAsync();
+        return video.Id;
+    }
 }

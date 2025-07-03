@@ -85,4 +85,13 @@ public class VideoController(IVideoService service)
         return Ok(response);
     }
 
+    [HttpPost("{id}/like")]
+    public async Task<ActionResult> ChangeLikes([FromRoute] long id)
+    {
+        var response = await service.ChangeLikesByVideoId(id);
+        
+        if (response is null) return NotFound();
+        
+        return Ok();
+    }
 }

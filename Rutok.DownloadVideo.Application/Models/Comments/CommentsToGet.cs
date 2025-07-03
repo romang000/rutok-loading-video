@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 namespace Rutok.DownloadVideo.Application.Models.Comments;
 
 public record CommentsToGet(
-    [Required] Guid Id,
-    [Required] Guid UserId,
-    [Required] Guid VideoId,
+    [Required] long Id,
+    [Required] long UserId,
+    [Required] long VideoId,
     [Required][MaxLength(255)] string Text
     );

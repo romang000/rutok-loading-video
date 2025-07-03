@@ -8,5 +8,5 @@ public interface ITagRepository
     Task<TagEntity?> Get(long id);
     Task<long?> Add(TagEntity entity);
     Task<long?> Delete(long id);
-    Task<List<TagEntity>> GetExisting(List<string> ruTags, List<string> engTags);
+    Task<List<TagEntity>> GetExisting(List<string> ruTags);
 }

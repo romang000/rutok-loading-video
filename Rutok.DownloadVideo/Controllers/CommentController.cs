@@ -12,10 +12,13 @@ public class CommentController(ICommentService commentService) : ControllerBase
 {
     //TODO:доставать из кукисов userId
     //TODO:по этому ендпоинту просто другой мс обращается
+    [Authorize]
     [HttpPost]
-    public async Task<ActionResult<long?>> AddCommentToVideo(CommentToAdd comment, long userId)
+    public async Task<ActionResult<long?>> AddCommentToVideo(CommentToAdd comment)
     {
-        var response = await commentService.AddComment(comment, userId);
+        var userIdClaim = HttpContext.User.FindFirst("user_id");
+        
+        var response = await commentService.AddComment(comment, long.Parse(userIdClaim.Value));
         if (response is null) return NotFound("Video not found");
         
         return Ok(response);

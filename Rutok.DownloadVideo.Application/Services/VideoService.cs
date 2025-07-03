@@ -13,17 +13,16 @@ public class VideoService(IVideoRepository videoRepository,
     public async Task<long?> CreateVideo(VideoToCreate video, long userId)
     {
         var existingTags = await tagRepository.GetExisting(
-            video.Tags.Select(t=> t.RuTag).ToList(),
-            video.Tags.Select(t => t.EngTag).ToList()
-            );
+            video.Tags.Select(t => t.RuTag).ToList());
+            //video.Tags.Select(t => t.EngTag).ToList()
+            //);
 
         var tagEntities = video.Tags
-            .Where(vt => !existingTags.Any(et => et.RuTag == vt.RuTag || et.EngTag == vt.EngTag))
+            .Where(vt => existingTags.All(et => et.RuTag != vt.RuTag))
             .Select(t => new TagEntity
             {
                 //Id = Guid.NewGuid(),
                 RuTag = t.RuTag,
-                EngTag = t.EngTag,
             }).ToList();
         
         var entity = new VideoEntity
@@ -56,8 +55,7 @@ public class VideoService(IVideoRepository videoRepository,
 
         var tags =  videoEntity.Tags.Select(t => new TagToGet(
             t.Id,
-            t.RuTag,
-            t.EngTag
+            t.RuTag
         ))
             .ToList();
         
@@ -142,5 +140,11 @@ public class VideoService(IVideoRepository videoRepository,
             result.Add(v.Id);
         }
         return result;
+    }
+
+    public async Task<long?> ChangeLikesByVideoId(long videoId)
+    {
+        var id = await videoRepository.AddLike(videoId);
+        return id;
     }
 }

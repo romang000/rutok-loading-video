@@ -9,7 +9,7 @@ public class TagRepository(DownloadVideoDbContext context) : ITagRepository
 {
     public async Task<long?> Add(TagEntity entity)
     {
-        bool isHaveThisTag = await context.Tags.AnyAsync(t => t.RuTag == entity.RuTag && t.EngTag == entity.EngTag);
+        bool isHaveThisTag = await context.Tags.AnyAsync(t => t.RuTag == entity.RuTag);
         if (isHaveThisTag)
         {
             return null;
@@ -42,10 +42,10 @@ public class TagRepository(DownloadVideoDbContext context) : ITagRepository
         return rows > 0 ? id : null;
     }
     
-    public async Task<List<TagEntity>> GetExisting(List<string> ruTags, List<string> engTags)
+    public async Task<List<TagEntity>> GetExisting(List<string> ruTags)
     {
         return await context.Tags
-            .Where(t => ruTags.Contains(t.RuTag) || engTags.Contains(t.EngTag))
+            .Where(t => ruTags.Contains(t.RuTag))
             .ToListAsync();
     }
     

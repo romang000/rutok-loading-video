@@ -13,8 +13,7 @@ public class TagService(ITagRepository tagRepository) : ITagService
         var tagEntity = new TagEntity
         {
             //Id = Guid.NewGuid(),
-            RuTag = tag.RuTag,
-            EngTag = tag.EngTag,
+            RuTag = tag.RuTag
         };
         
         var tagId = await tagRepository.Add(tagEntity);
@@ -25,7 +24,7 @@ public class TagService(ITagRepository tagRepository) : ITagService
     public async Task<List<TagToGet>> GetAllTags()
     {
         var tagEntity = await tagRepository.GetAll();
-        var tag = tagEntity.Select(t => new TagToGet(t.Id, t.RuTag, t.EngTag)).ToList();
+        var tag = tagEntity.Select(t => new TagToGet(t.Id, t.RuTag)).ToList();
         
         return tag;
     }
@@ -39,7 +38,7 @@ public class TagService(ITagRepository tagRepository) : ITagService
             return null;
         }
         
-        var tag = new TagToGet(entity.Id, entity.RuTag, entity.EngTag);
+        var tag = new TagToGet(entity.Id, entity.RuTag);
         
         return tag;
     }
